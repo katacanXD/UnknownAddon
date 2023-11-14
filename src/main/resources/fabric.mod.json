@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "zoomify",
+  "version": "2.9.4",
+  "name": "Zoomify",
+  "description": "A zoom mod with infinite customizability.",
+  "authors": [
+    "isXander"
+  ],
+  "contact": {
+    "homepage":"https://isxander.dev",
+    "issues":"https://github.com/isXander/Zoomify/issues",
+    "sources":"https://github.com/isXander/Zoomify"
+  },
+  "license": "MIT",
+  "icon": "assets/zoomify/zoomify.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "ru.feytox.zoomify.Zoomify"
+    ]
+  },
+  "mixins": [
+    "zoomify.mixins.json"
+  ],
+
+  "accessWidener" : "zoomify.accesswidener",
+
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "1.19.4",
+    "java": ">=17"
+  }
+}

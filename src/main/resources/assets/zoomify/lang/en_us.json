@@ -1,0 +1,9 @@
+{
+  "zoomify.midnightconfig.title": "Zoomify",
+  "zoomify.midnightconfig.toggleMod": "Enable mod",
+  "key.zoomify.toggleMod": "Clan hide",
+  "zoomify.online.success": "Online whitelist has been successfully reloaded",
+  "zoomify.online.fail": "An error occurred while requesting the online whitelist",
+  "zoomify.midnightconfig.flag": "No blindness",
+  "key.zoomify.flag": "Settings"
+}

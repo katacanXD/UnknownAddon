@@ -1,0 +1,9 @@
+{
+  "zoomify.midnightconfig.title": "Zoomify",
+  "zoomify.midnightconfig.toggleMod": "Clan hide",
+  "key.zoomify.toggleMod": "Включить мод",
+  "zoomify.online.success": "Онлайн блоклист был успешно перезагружен",
+  "zoomify.online.fail": "Возникла ошибка при получении онлайн блоклиста",
+  "zoomify.midnightconfig.flag": "No blindness",
+  "key.zoomify.flag": "Настройки"
+}
