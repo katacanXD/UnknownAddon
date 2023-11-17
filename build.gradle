@@ -12,10 +12,6 @@ group = project.maven_group
 
 repositories {
 	maven {
-		name = "CottonMC"
-		url = "https://server.bbkr.space/artifactory/libs-release"
-	}
-	maven {
 		name = "Modrinth"
 		url = "https://api.modrinth.com/maven"
 		content {
@@ -24,6 +20,10 @@ repositories {
 	}
 	maven {
 		url = "https://maven.terraformersmc.com/releases/"
+	}
+	maven {
+		name = "CottonMC"
+		url = "https://server.bbkr.space/artifactory/libs-release"
 	}
 }
 
@@ -37,6 +37,8 @@ dependencies {
 	include "maven.modrinth:midnightlib:${project.midnightlib_version}"
 
 	implementation 'com.google.code.gson:gson:2.9.0'
+
+	modImplementation include("io.github.cottonmc:LibGui:7.1.1+1.19.4")
 }
 
 processResources {

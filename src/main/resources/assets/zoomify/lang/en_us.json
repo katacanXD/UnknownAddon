@@ -5,5 +5,5 @@
   "zoomify.online.success": "Online whitelist has been successfully reloaded",
   "zoomify.online.fail": "An error occurred while requesting the online whitelist",
   "zoomify.midnightconfig.flag": "No blindness",
-  "key.zoomify.flag": "Settings"
+  "text.size": "Size: %d"
 }

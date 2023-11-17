@@ -4,11 +4,13 @@
   "package": "ru.feytox.zoomify.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ClanHideMixin"
+    "ClanHideMixin",
+    "PlayerHitboxMixin"
   ],
   "client": [
     "ClanHideMixin",
-    "NoBlindnessMixin"
+    "NoBlindnessMixin",
+    "SilenceHitboxMixin"
   ],
   "injectors": {
     "defaultRequire": 1

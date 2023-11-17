@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class NoBlindnessMixin {
     @Inject(at = @At("HEAD"), method = "applyStartEndModifier(Lnet/minecraft/client/render/BackgroundRenderer$FogData;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/effect/StatusEffectInstance;FF)V", cancellable = true)
     public void applyStartEndModifier(FogData fogData, LivingEntity entity, StatusEffectInstance effect, float viewDistance, float tickDelta, CallbackInfo ci) {
-        if (Config.flag && !Config.pan) {
+        if (Config.flag && !Config.pan && Config.permission) {
             fogData.fogStart = viewDistance;
             fogData.fogEnd = viewDistance;
             ci.cancel();
