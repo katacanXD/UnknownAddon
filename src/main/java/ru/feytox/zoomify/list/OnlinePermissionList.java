@@ -1,10 +1,11 @@
-package ru.feytox.zoomify;
+package ru.feytox.zoomify.list;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import ru.feytox.zoomify.Config;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Type;
@@ -38,7 +39,8 @@ public class OnlinePermissionList {
             String response = request(url);
             JsonElement root = JsonParser.parseString(response);
             JsonArray jsonArray = root.getAsJsonObject().get("PermissionList").getAsJsonArray();
-            Type listType = new TypeToken<List<String>>() {}.getType();
+            Type listType = new TypeToken<List<String>>() {
+            }.getType();
 
             return gson.fromJson(jsonArray, listType);
         } catch (Exception e) {

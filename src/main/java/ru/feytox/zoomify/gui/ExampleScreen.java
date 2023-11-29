@@ -12,4 +12,11 @@ public class ExampleScreen extends CottonClientScreen{
     public void init() {
         screenWidth = this.width; screenHeight = this.height;
     }
+    @Override
+    public boolean charTyped(char chr, int modifiers) {
+        if (!(chr >= '0' && chr <= '9')) {
+            return false;
+        }
+        return super.charTyped(chr, modifiers);
+    }
 }

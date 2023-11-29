@@ -1,9 +1,9 @@
 {
   "zoomify.midnightconfig.title": "Zoomify",
-  "zoomify.midnightconfig.toggleMod": "Enable mod",
-  "key.zoomify.toggleMod": "Clan hide",
-  "zoomify.online.success": "Online whitelist has been successfully reloaded",
-  "zoomify.online.fail": "An error occurred while requesting the online whitelist",
-  "zoomify.midnightconfig.flag": "No blindness",
-  "text.size": "Size: %d"
+  "text.size": "Size: %d",
+  "text.l.delay": "Tick: %d",
+  "key.zoomify.open": "Open GUI",
+  "zoomify.midnightconfig.clicker": "Clicker",
+  "zoomify.midnightconfig.playerglow": "Player Glow",
+  "zoomify.midnightconfig.clanhide": "Clan Hide"
 }
