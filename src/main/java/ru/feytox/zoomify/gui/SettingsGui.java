@@ -22,12 +22,9 @@ public class SettingsGui extends LightweightGuiDescription {
     public TriState isDarkMode() {
         return TriState.TRUE;
     }
-
-    public boolean hits = false;
-    public boolean click = false;
-    public boolean glow = false;
-
     public SettingsGui() {
+
+
         WPlainPanel donePanic = new WPlainPanel();
         WPlainPanel root = new WPlainPanel();
         WPlainPanel hitBoxSettings = new WPlainPanel();
@@ -37,13 +34,13 @@ public class SettingsGui extends LightweightGuiDescription {
         setRootPanel(back);
 
         back.setSize(ExampleScreen.screenWidth, ExampleScreen.screenHeight);
-        back.add(hitBoxSettings, (ExampleScreen.screenWidth/2-25), (ExampleScreen.screenHeight/2-73), 165, 146);
+        back.add(hitBoxSettings, (ExampleScreen.screenWidth/2-25), (ExampleScreen.screenHeight/2-73), 171, 146);
         back.add(GlowSettings, (ExampleScreen.screenWidth/2-25), (ExampleScreen.screenHeight/2-73), 105, 146);
         back.add(ClickerSettings, (ExampleScreen.screenWidth/2-25), (ExampleScreen.screenHeight/2-73), 250, 146);
 
-        hitBoxSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
-        GlowSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
-        ClickerSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
+        hitBoxSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
+        GlowSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
+        ClickerSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
 
         root.setBackgroundPainter(BackgroundPainter.VANILLA);
         donePanic.setBackgroundPainter(BackgroundPainter.VANILLA);
@@ -52,7 +49,7 @@ public class SettingsGui extends LightweightGuiDescription {
         ClickerSettings.setBackgroundPainter(BackgroundPainter.VANILLA);
 
 
-        back.add(donePanic, (ExampleScreen.screenWidth), (ExampleScreen.screenHeight), 100, 50);
+        back.add(donePanic, (ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight), 100, 50);
         back.add(root, (ExampleScreen.screenWidth/2-135), (ExampleScreen.screenHeight/2-73), 106, 146);
 
 
@@ -279,7 +276,7 @@ public class SettingsGui extends LightweightGuiDescription {
         ClickerSettings.add(rHoldMode, 130, 50);
         ClickerSettings.add(rTargetEntityMode, 130, 65);
 
-        ClickerSettings.add(command, 43, 127, 200, 1);
+        ClickerSettings.add(command, 47, 127, 200, 1);
 
         //
         //
@@ -330,35 +327,48 @@ public class SettingsGui extends LightweightGuiDescription {
         root.add(clicker, 4, 57, 96, 20);
         root.add(clickerText, 35, 63, 60, 0);
 
+        if (Config.hits) {hitBoxSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+        else if (Config.glow) {GlowSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+        else if (Config.click) {ClickerSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
 
         hitbox.setOnClick(() -> {
-            if (!hits){
-                hits = true;
-                click = false;
-                glow = false;
+            if (!Config.hits){
+                Config.hits = true;
+                Config.click = false;
+                Config.glow = false;
                 hitBoxSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));
-                GlowSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
-                ClickerSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
+                GlowSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
+                ClickerSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
+            } else {
+                Config.hits = false;
+                hitBoxSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
             }
         });
         Glow.setOnClick(() -> {
-            if (!glow){
-                glow = true;
-                click = false;
-                hits = false;
-                hitBoxSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
+            if (!Config.glow){
+                Config.glow = true;
+                Config.click = false;
+                Config.hits = false;
+                hitBoxSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
                 GlowSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));
-                ClickerSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
+                ClickerSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
+            } else {
+                Config.glow = false;
+                GlowSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
             }
+
         });
         clicker.setOnClick(() -> {
-            if (!click) {
-                click = true;
-                hits = false;
-                glow = false;
-                hitBoxSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
-                GlowSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
+            if (!Config.click) {
+                Config.click = true;
+                Config.hits = false;
+                Config.glow = false;
+                hitBoxSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
+                GlowSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
                 ClickerSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));
+            } else {
+                Config.click = false;
+                ClickerSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
             }
         });
 
@@ -385,9 +395,9 @@ public class SettingsGui extends LightweightGuiDescription {
         panic.setOnClick(() -> {
             donePanic.setLocation((ExampleScreen.screenWidth/2-50), (ExampleScreen.screenHeight/2-35));
             back.remove(root);
-            hitBoxSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
-            GlowSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
-            ClickerSettings.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
+            hitBoxSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
+            GlowSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
+            ClickerSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
             back.remove(panic);
             back.remove(panicText);
             WText panicQ = new WText(Text.literal("Panic?"));
@@ -403,10 +413,10 @@ public class SettingsGui extends LightweightGuiDescription {
                 }
             });
             exit.setOnClick(() -> {
-                if (hits) {hitBoxSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
-                else if (glow) {GlowSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
-                else if (click) {ClickerSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
-                donePanic.setLocation((ExampleScreen.screenWidth), (ExampleScreen.screenHeight));
+                if (Config.hits) {hitBoxSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+                else if (Config.glow) {GlowSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+                else if (Config.click) {ClickerSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+                donePanic.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
                 back.add(root, (ExampleScreen.screenWidth/2-135), (ExampleScreen.screenHeight/2-73), 104, 146);
                 back.add(panic, ExampleScreen.screenWidth-60, ExampleScreen.screenHeight-30, 50, 20);
                 back.add(panicText, ExampleScreen.screenWidth-48, ExampleScreen.screenHeight-24, 50, 0);

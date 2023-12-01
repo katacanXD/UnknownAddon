@@ -88,3 +88,4 @@ loom {
 	accessWidenerPath = file("src/main/resources/zoomify.accesswidener")
 }
 
+

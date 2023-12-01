@@ -8,7 +8,11 @@ UnknownAddon - это клиент для PrisonEVO с функциями кот
 
 ## Команды
 
-#### `/h click` - включает кликер
-#### `/h ch` - включает Clan Hide
-#### `/h light` - включает Player Light
+`/h click` - включает кликер
+
+`/h ch` - включает Clan Hide 
+
+`/h light` - включает Player Light
+
+`/h runechange <номер сета>` - Смена сета рун
 

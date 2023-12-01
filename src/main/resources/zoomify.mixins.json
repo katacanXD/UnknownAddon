@@ -5,9 +5,12 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "EntityMixin",
-    "HideEntityMixin"
+    "HideEntityMixin",
+    "InventoryS2CPacketMixin",
+    "ScreenHandlerSlotUpdateS2CPacketMixin"
   ],
   "client": [
+    "ClientPlayNetworkHandlerMixin",
     "HideEntityMixin",
     "MixinDisplayEntityRenderer",
     "NoBlindnessMixin",

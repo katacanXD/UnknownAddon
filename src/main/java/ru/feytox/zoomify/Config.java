@@ -17,10 +17,10 @@ public class Config extends MidnightConfig {
     public static boolean SpiderGlow = false;
 
 
-    public static String onlineEnemyListUrl = "https://raw.githubusercontent.com/katacanXD/helios-whitelist/main/EnemyList.html";
-    public static String onlinePermissionListUrl = "https://raw.githubusercontent.com/katacanXD/helios-whitelist/main/PermissionList.html";
-    public static String onlineWhitelistUrl = "https://raw.githubusercontent.com/katacanXD/helios-whitelist/main/WhiteList.html";
     public static boolean toggleH = false;
     public static boolean toggleMobH = false;
 
+    public static boolean hits;
+    public static boolean glow;
+    public static boolean click;
 }

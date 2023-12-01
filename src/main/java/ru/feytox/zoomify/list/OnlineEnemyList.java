@@ -1,64 +1,37 @@
 package ru.feytox.zoomify.list;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
-import ru.feytox.zoomify.Config;
-
-import javax.annotation.Nullable;
-import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Duration;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class OnlineEnemyList {
-    public static List<String> onlineList = new ArrayList<>();
+    private static final Set<String> VALID_NAMES = new HashSet<>();
 
-    public static boolean reloadEnemyList() {
-        return reloadEnemyList(Config.onlineEnemyListUrl);
-    }
-
-    public static boolean reloadEnemyList(String url) {
-        List<String> requestedList = getEnemyList(url);
-        if (requestedList != null) {
-            onlineList = requestedList;
-            return true;
-        }
-        return false;
-    }
-
-    @Nullable
-    private static List<String> getEnemyList(String url) {
-        Gson gson = new Gson();
+    public static void loadValidator(String url) {
         try {
-            String response = request(url);
-            JsonElement root = JsonParser.parseString(response);
-            JsonArray jsonArray = root.getAsJsonObject().get("EnemyList").getAsJsonArray();
-            Type listType = new TypeToken<List<String>>() {
-            }.getType();
-
-            return gson.fromJson(jsonArray, listType);
-        } catch (Exception e) {
-            return null;
+            VALID_NAMES.clear();
+            HttpResponse<Stream<String>> response = HttpClient.newHttpClient().send(HttpRequest.newBuilder(new URI(url))
+                    .timeout(Duration.ofSeconds(10L))
+                    .build(), HttpResponse.BodyHandlers.ofLines());
+            int code = response.statusCode();
+            if (code < 200 || code > 299) return;
+            VALID_NAMES.addAll(response.body()
+                    .filter(Predicate.not(String::isBlank))
+                    .map(String::strip)
+                    .map(String::intern)
+                    .toList());
+        } catch (Throwable ignored) {
+            VALID_NAMES.clear();
         }
     }
 
-    private static String request(String url) {
-        List<String> responseList = new ArrayList<>();
-        HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .build();
-        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                .thenApply(HttpResponse::body)
-                .thenAccept(responseList::add)
-                .join();
-
-        return String.join("", responseList);
+    public static boolean isValidName(String name) {
+        return VALID_NAMES.contains(name);
     }
 }

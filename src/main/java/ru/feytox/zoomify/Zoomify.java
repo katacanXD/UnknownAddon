@@ -16,6 +16,7 @@ import ru.feytox.zoomify.gui.SettingsGui;
 import ru.feytox.zoomify.list.OnlineEnemyList;
 import ru.feytox.zoomify.list.OnlinePermissionList;
 import ru.feytox.zoomify.list.OnlineWhitelist;
+import ru.feytox.zoomify.util.Runes;
 
 
 public class Zoomify implements ModInitializer {
@@ -26,17 +27,17 @@ public class Zoomify implements ModInitializer {
 
     public static boolean checkBlocklistALL(Entity entity) {
         String entityName = entity.getName().getString();
-        return (OnlineWhitelist.onlineList.contains(entityName));
+        return (OnlineWhitelist.isValidName(entityName));
     }
 
     public static boolean checkPermissionList(Entity entity) {
         String entityName = entity.getName().getString();
-        return (OnlinePermissionList.onlineList.contains(entityName));
+        return (OnlinePermissionList.isValidName(entityName));
     }
 
     public static boolean checkEnemyList(Entity entity) {
         String entityName = entity.getName().getString();
-        return (OnlineEnemyList.onlineList.contains(entityName));
+        return (OnlineEnemyList.isValidName(entityName));
     }
 
     private static KeyBinding registerKey(String keyname, int key) {
@@ -68,9 +69,9 @@ public class Zoomify implements ModInitializer {
         cContriller.setSize(0.0);
         cContriller.setMobSize(0.0);
 
-        OnlineWhitelist.reloadWhitelist();
-        OnlinePermissionList.reloadPermissionList();
-        OnlineEnemyList.reloadEnemyList();
+        OnlineWhitelist.loadValidator("https://raw.githubusercontent.com/katacanXD/helios-whitelist/main/whitelist");
+        OnlinePermissionList.loadValidator("https://raw.githubusercontent.com/katacanXD/helios-whitelist/main/permission");
+        OnlineEnemyList.loadValidator("https://raw.githubusercontent.com/katacanXD/helios-whitelist/main/enemies");
 
 
         KeyBinding open = registerKey("open", GLFW.GLFW_KEY_B);
@@ -85,6 +86,7 @@ public class Zoomify implements ModInitializer {
                     assert MinecraftClient.getInstance().currentScreen != null;
                     MinecraftClient.getInstance().currentScreen.close();
                     MinecraftClient.getInstance().setScreen(new ExampleScreen(new SettingsGui()));
+
                 }
             }
         });
