@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import ru.feytox.zoomify.Config;
+import ru.feytox.zoomify.test;
 import ru.feytox.zoomify.Zoomify;
 
 @Mixin(Entity.class)
@@ -18,7 +18,7 @@ public class HideEntityMixin {
     @Inject(at = @At("RETURN"), method = "getBoundingBox", cancellable = true)
     public void myMod$getBoundingBox$ret(@NotNull CallbackInfoReturnable<Box> cir) {
         Entity entity = (Entity) (Object) this;
-        if (Config.clanHideToggle && !Config.pan && Config.permission) {
+        if (test.clanHideToggle && !test.pan && test.permission) {
             if (entity instanceof PlayerEntity player) {
                 if (Zoomify.checkBlocklistALL(player) && !player.isMainPlayer()) {
                     cir.setReturnValue(new Box(
@@ -26,7 +26,7 @@ public class HideEntityMixin {
                 }
             }
         }
-        if (Config.HideToggle && !Config.pan && Config.permission) {
+        if (test.HideToggle && !test.pan && test.permission) {
             if (!(entity instanceof PlayerEntity) && !(entity instanceof ArmorStandEntity)) {
                 cir.setReturnValue(new Box(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
             }
@@ -35,9 +35,9 @@ public class HideEntityMixin {
         if (entity instanceof PlayerEntity) {
             if (entity == MinecraftClient.getInstance().player) {
                 if (Zoomify.checkPermissionList(entity)) {
-                    Config.permission = true;
+                    test.permission = true;
                 } else if (!Zoomify.checkPermissionList(entity)) {
-                    Config.permission = false;
+                    test.permission = false;
                 }
             }
         }

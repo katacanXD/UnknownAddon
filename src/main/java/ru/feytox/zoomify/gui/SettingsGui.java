@@ -10,9 +10,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import ru.feytox.zoomify.Config;
+import ru.feytox.zoomify.test;
 import ru.feytox.zoomify.Zoomify;
-import ru.feytox.zoomify.clicker.cContriller;
+import ru.feytox.zoomify.test;
 
 public class SettingsGui extends LightweightGuiDescription {
     public static final Identifier SUPER_OFF_IMAGE = new Identifier(Zoomify.MOD_ID, "textures/image_off.png");
@@ -58,69 +58,69 @@ public class SettingsGui extends LightweightGuiDescription {
         // HitBox
         //
         //
-        WDynamicLabel hitSize = new WDynamicLabel(() -> I18n.translate("text.size", cContriller.getSize()));
+        WDynamicLabel hitSize = new WDynamicLabel(() -> I18n.translate("text.size", test.getSize()));
         hitSize.setColor(0xc3c3c3,0xc3c3c3);
 
-        WToggleButton HitboxSizeText = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Player HitBox"));
+        WToggleButton HitboxSizeText = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Plауеr mоre"));
         HitboxSizeText.setColor(0xc3c3c3,0xc3c3c3);
-        if (Config.toggleH) {
+        if (test.toggleH) {
             HitboxSizeText.setToggle(true);
         }
         HitboxSizeText.setOnToggle(on -> {
-            Config.toggleH = !Config.toggleH;
+            test.toggleH = !test.toggleH;
         });
 
-        int sizeBox = (int) (cContriller.getSize() * 100);
+        int sizeBox = (int) (test.getSize() * 100);
 
         WSlider HitboxSize = new WSlider(0, 25, Axis.HORIZONTAL);
         HitboxSize.setValue(sizeBox);
 
 
-        WToggleButton HideHits = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Hide Player HitBox"));
+        WToggleButton HideHits = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Shоw Plауеr mоre"));
         HideHits.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.HideH) {
+        if (test.HideH) {
             HideHits.setToggle(true);
         }
         HideHits.setOnToggle(on -> {
-            cContriller.HideH = !cContriller.HideH;
+            test.HideH = !test.HideH;
         });
 
 
-        WToggleButton MobHitboxSizeText = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Mob HitBox"));
+        WToggleButton MobHitboxSizeText = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Mоb mоre"));
         MobHitboxSizeText.setColor(0xc3c3c3,0xc3c3c3);
-        if (Config.toggleMobH) {
+        if (test.toggleMobH) {
             MobHitboxSizeText.setToggle(true);
         }
         MobHitboxSizeText.setOnToggle(on -> {
-            Config.toggleMobH = !Config.toggleMobH;
+            test.toggleMobH = !test.toggleMobH;
         });
 
-        int sizeMobBox = (int) (cContriller.getMobSize() * 100);
+        int sizeMobBox = (int) (test.getMobSize() * 100);
 
         WSlider MobHitboxSize = new WSlider(0, 50, Axis.HORIZONTAL);
         MobHitboxSize.setValue(sizeMobBox);
 
-        WDynamicLabel MobHitSize = new WDynamicLabel(() -> I18n.translate("text.size", cContriller.getMobSize()));
+        WDynamicLabel MobHitSize = new WDynamicLabel(() -> I18n.translate("text.size", test.getMobSize()));
         MobHitSize.setColor(0xc3c3c3,0xc3c3c3);
 
 
-        WToggleButton HideMobHits = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Hide Mob HitBox"));
+        WToggleButton HideMobHits = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Shоw Mоb Моre"));
         HideMobHits.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.HideMobH) {
+        if (test.HideMobH) {
             HideMobHits.setToggle(true);
         }
         HideMobHits.setOnToggle(on -> {
-            cContriller.HideMobH = !cContriller.HideMobH;
+            test.HideMobH = !test.HideMobH;
         });
 
 
-        WToggleButton OnlySmallMobs = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Only Small Mobs"));
+        WToggleButton OnlySmallMobs = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Only Smаll Мobs"));
         OnlySmallMobs.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.OnlySmallMob) {
+        if (test.OnlySmallMob) {
             OnlySmallMobs.setToggle(true);
         }
         OnlySmallMobs.setOnToggle(on -> {
-            cContriller.OnlySmallMob = !cContriller.OnlySmallMob;
+            test.OnlySmallMob = !test.OnlySmallMob;
         });
 
 
@@ -134,8 +134,8 @@ public class SettingsGui extends LightweightGuiDescription {
         hitBoxSettings.add(HideMobHits, 10, 100);
         hitBoxSettings.add(OnlySmallMobs, 10, 115);
 
-        ClientTickEvents.END_CLIENT_TICK.register(client -> cContriller.setSize((HitboxSize.getValue()/100.0)));
-        ClientTickEvents.END_CLIENT_TICK.register(client -> cContriller.setMobSize((MobHitboxSize.getValue()/100.0)));
+        ClientTickEvents.END_CLIENT_TICK.register(client -> test.setSize((HitboxSize.getValue()/100.0)));
+        ClientTickEvents.END_CLIENT_TICK.register(client -> test.setMobSize((MobHitboxSize.getValue()/100.0)));
 
 
         //
@@ -143,40 +143,40 @@ public class SettingsGui extends LightweightGuiDescription {
         //Glow
         //
         //
-        WToggleButton PlayerGlow = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Player Light"));
+        WToggleButton PlayerGlow = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Рlаyеr Light"));
         PlayerGlow.setColor(0xc3c3c3,0xc3c3c3);
-        if (Config.PlayerGlow) {
+        if (test.PlayerGlow) {
             PlayerGlow.setToggle(true);
         }
         PlayerGlow.setOnToggle(on -> {
-            Config.PlayerGlow = !Config.PlayerGlow;
+            test.PlayerGlow = !test.PlayerGlow;
         });
 
-        WToggleButton ClanGlow = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Clan Light"));
+        WToggleButton ClanGlow = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Сlаn Light"));
         ClanGlow.setColor(0xc3c3c3,0xc3c3c3);
-        if (Config.ClanGlow) {
+        if (test.ClanGlow) {
             ClanGlow.setToggle(true);
         }
         ClanGlow.setOnToggle(on -> {
-            Config.ClanGlow = !Config.ClanGlow;
+            test.ClanGlow = !test.ClanGlow;
         });
 
-        WToggleButton EnemyGlow = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Enemy Light"));
+        WToggleButton EnemyGlow = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Еnemy Light"));
         EnemyGlow.setColor(0xc3c3c3,0xc3c3c3);
-        if (Config.EnemyGlow) {
+        if (test.EnemyGlow) {
             EnemyGlow.setToggle(true);
         }
         EnemyGlow.setOnToggle(on -> {
-            Config.EnemyGlow = !Config.EnemyGlow;
+            test.EnemyGlow = !test.EnemyGlow;
         });
 
-        WToggleButton SpiderGlow = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Spider Light"));
+        WToggleButton SpiderGlow = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Spidеr Light"));
         SpiderGlow.setColor(0xc3c3c3,0xc3c3c3);
-        if (Config.SpiderGlow) {
+        if (test.SpiderGlow) {
             SpiderGlow.setToggle(true);
         }
         SpiderGlow.setOnToggle(on -> {
-            Config.SpiderGlow = !Config.SpiderGlow;
+            test.SpiderGlow = !test.SpiderGlow;
         });
 
         GlowSettings.add(PlayerGlow, 10, 10);
@@ -190,77 +190,84 @@ public class SettingsGui extends LightweightGuiDescription {
         // Clicker
         //
         //
-        WToggleButton ToggleLeftClick = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Toggle Left Click"));
+        WToggleButton ToggleLeftClick = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Тоggle Lеft"));
         ToggleLeftClick.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.lActive) {
+        if (test.lActive) {
             ToggleLeftClick.setToggle(true);
         }
-        ToggleLeftClick.setOnToggle(on -> {cContriller.lActive = !cContriller.lActive;});
+        ToggleLeftClick.setOnToggle(on -> {
+            test.lActive = !test.lActive;});
 
-        WTextField lClickDelay = new WTextField(Text.literal(Integer.toString(cContriller.getLClickDelayInt())));
+        WTextField lClickDelay = new WTextField(Text.literal(Integer.toString(test.getLClickDelayInt())));
 
-        WToggleButton lHoldMode = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Hold Mod"));
+        WToggleButton lHoldMode = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Ноld Mоd"));
         lHoldMode.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.lHoldMode) {
+        if (test.lHoldMode) {
             lHoldMode.setToggle(true);
         }
-        lHoldMode.setOnToggle(on -> {cContriller.lHoldMode = !cContriller.lHoldMode;});
+        lHoldMode.setOnToggle(on -> {
+            test.lHoldMode = !test.lHoldMode;});
 
-        WToggleButton lTargetEntityMode = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Target Mod"));
+        WToggleButton lTargetEntityMode = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Еntitу Mоd"));
         lTargetEntityMode.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.lTargetEntityMode) {
+        if (test.lTargetEntityMode) {
             lTargetEntityMode.setToggle(true);
         }
-        lTargetEntityMode.setOnToggle(on -> {cContriller.lTargetEntityMode = !cContriller.lTargetEntityMode;});
+        lTargetEntityMode.setOnToggle(on -> {
+            test.lTargetEntityMode = !test.lTargetEntityMode;});
 
-        WToggleButton lCooldownAttackMode = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Cooldown Mod"));
+        WToggleButton lCooldownAttackMode = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Сооldown Mоd"));
         lCooldownAttackMode.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.lCooldownAttackMode) {
+        if (test.lCooldownAttackMode) {
             lCooldownAttackMode.setToggle(true);
         }
-        lCooldownAttackMode.setOnToggle(on -> {cContriller.lCooldownAttackMode = !cContriller.lCooldownAttackMode;});
+        lCooldownAttackMode.setOnToggle(on -> {
+            test.lCooldownAttackMode = !test.lCooldownAttackMode;});
 
 
-        WToggleButton ToggleRightClick = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Toggle Right Click"));
+        WToggleButton ToggleRightClick = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Тоggle Right"));
         ToggleRightClick.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.rActive) {
+        if (test.rActive) {
             ToggleRightClick.setToggle(true);
         }
-        ToggleRightClick.setOnToggle(on -> {cContriller.rActive = !cContriller.rActive;});
+        ToggleRightClick.setOnToggle(on -> {
+            test.rActive = !test.rActive;});
 
-        WTextField rClickDelay = new WTextField(Text.literal(Integer.toString(cContriller.getRClickDelayInt())));
+        WTextField rClickDelay = new WTextField(Text.literal(Integer.toString(test.getRClickDelayInt())));
 
 
-        WToggleButton rHoldMode = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Hold Mod"));
+        WToggleButton rHoldMode = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Ноld Mоd"));
         rHoldMode.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.rHoldMode) {
+        if (test.rHoldMode) {
             rHoldMode.setToggle(true);
         }
-        rHoldMode.setOnToggle(on -> {cContriller.rHoldMode = !cContriller.rHoldMode;});
+        rHoldMode.setOnToggle(on -> {
+            test.rHoldMode = !test.rHoldMode;});
 
-        WToggleButton rTargetEntityMode = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Target Mod"));
+        WToggleButton rTargetEntityMode = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("Еntity Mоd"));
         rTargetEntityMode.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.rTargetEntityMode) {
+        if (test.rTargetEntityMode) {
             rTargetEntityMode.setToggle(true);
         }
-        rTargetEntityMode.setOnToggle(on -> {cContriller.rTargetEntityMode = !cContriller.rTargetEntityMode;});
+        rTargetEntityMode.setOnToggle(on -> {
+            test.rTargetEntityMode = !test.rTargetEntityMode;});
 
 
 
         WButton OK = new WButton(Text.literal("Ok"));
         OK.setOnClick(() -> {
-            if (!lClickDelay.getText().equals("")) {
-                cContriller.lClickDelayInt = convertStringToInt(lClickDelay.getText());
+            if (!lClickDelay.getText().equals("") && !lClickDelay.getText().equals("0")) {
+                test.lClickDelayInt = convertStringToInt(lClickDelay.getText());
             }
         });
         WButton OKr = new WButton(Text.literal("Ok"));
         OKr.setOnClick(() -> {
             if (!rClickDelay.getText().equals("")) {
-                cContriller.rClickDelayInt = convertStringToInt(rClickDelay.getText());
+                test.rClickDelayInt = convertStringToInt(rClickDelay.getText());
             }
         });
 
-        WText command = new WText(Text.literal("Включить кликер - /h click"));
+        WText command = new WText(Text.literal("Включить - /h cl"));
         command.setColor(0x828282,0x828282);
 
         ClickerSettings.add(ToggleLeftClick, 10, 10);
@@ -283,34 +290,37 @@ public class SettingsGui extends LightweightGuiDescription {
         // Menu
         //
         //
-        WToggleButton clanHide = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("ClanHide"));
+        WToggleButton clanHide = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("ShоwСlаn"));
         clanHide.setColor(0xc3c3c3,0xc3c3c3);
-        if (Config.clanHideToggle) {
+        if (test.clanHideToggle) {
             clanHide.setToggle(true);
         }
-        clanHide.setOnToggle(on -> {Config.clanHideToggle = !Config.clanHideToggle;});
+        clanHide.setOnToggle(on -> {
+            test.clanHideToggle = !test.clanHideToggle;});
         root.add(clanHide, 10, 77);
 
 
-        WToggleButton NoBlindness = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("NoBlindness"));
+        WToggleButton NoBlindness = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("NоВlindnеss"));
         NoBlindness.setColor(0xc3c3c3,0xc3c3c3);
-        if (cContriller.flag) {
+        if (test.flag) {
             NoBlindness.setToggle(true);
         }
-        NoBlindness.setOnToggle(on -> {cContriller.flag = !cContriller.flag;});
+        NoBlindness.setOnToggle(on -> {
+            test.flag = !test.flag;});
         root.add(NoBlindness, 10, 92);
 
-        WToggleButton HideAll = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("HideAll"));
+        WToggleButton HideAll = new WToggleButton(SUPER_ON_IMAGE, SUPER_OFF_IMAGE, Text.literal("ShowАll"));
         HideAll.setColor(0xc3c3c3,0xc3c3c3);
-        if (Config.HideToggle) {
+        if (test.HideToggle) {
             HideAll.setToggle(true);
         }
-        HideAll.setOnToggle(on -> {Config.HideToggle = !Config.HideToggle;});
+        HideAll.setOnToggle(on -> {
+            test.HideToggle = !test.HideToggle;});
         root.add(HideAll, 10, 107);
 
 
         WButton hitbox = new WButton();
-        WText hitboxText = new WText(Text.literal("HitBox"));
+        WText hitboxText = new WText(Text.literal("More"));
         hitboxText.setColor(0xc3c3c3,0xc3c3c3);
         root.add(hitbox, 4, 15, 96, 20);
         root.add(hitboxText, 36, 21, 60, 0);
@@ -322,52 +332,52 @@ public class SettingsGui extends LightweightGuiDescription {
         root.add(glowText, 40, 42, 60, 0);
 
         WButton clicker = new WButton();
-        WText clickerText = new WText(Text.literal("Clicker"));
+        WText clickerText = new WText(Text.literal("HitBox"));
         clickerText.setColor(0xc3c3c3,0xc3c3c3);
         root.add(clicker, 4, 57, 96, 20);
         root.add(clickerText, 35, 63, 60, 0);
 
-        if (Config.hits) {hitBoxSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
-        else if (Config.glow) {GlowSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
-        else if (Config.click) {ClickerSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+        if (test.hits) {hitBoxSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+        else if (test.glow) {GlowSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+        else if (test.click) {ClickerSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
 
         hitbox.setOnClick(() -> {
-            if (!Config.hits){
-                Config.hits = true;
-                Config.click = false;
-                Config.glow = false;
+            if (!test.hits){
+                test.hits = true;
+                test.click = false;
+                test.glow = false;
                 hitBoxSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));
                 GlowSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
                 ClickerSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
             } else {
-                Config.hits = false;
+                test.hits = false;
                 hitBoxSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
             }
         });
         Glow.setOnClick(() -> {
-            if (!Config.glow){
-                Config.glow = true;
-                Config.click = false;
-                Config.hits = false;
+            if (!test.glow){
+                test.glow = true;
+                test.click = false;
+                test.hits = false;
                 hitBoxSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
                 GlowSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));
                 ClickerSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
             } else {
-                Config.glow = false;
+                test.glow = false;
                 GlowSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
             }
 
         });
         clicker.setOnClick(() -> {
-            if (!Config.click) {
-                Config.click = true;
-                Config.hits = false;
-                Config.glow = false;
+            if (!test.click) {
+                test.click = true;
+                test.hits = false;
+                test.glow = false;
                 hitBoxSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
                 GlowSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
                 ClickerSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));
             } else {
-                Config.click = false;
+                test.click = false;
                 ClickerSettings.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
             }
         });
@@ -379,7 +389,7 @@ public class SettingsGui extends LightweightGuiDescription {
         //
         //
         WButton panic = new WButton();
-        WText panicText = new WText(Text.literal("Panic"));
+        WText panicText = new WText(Text.literal("Pаnic"));
         panicText.setColor(0xf10e3e,0xf10e3e);
 
         back.add(panic, ExampleScreen.screenWidth-60, ExampleScreen.screenHeight-30, 50, 20);
@@ -406,16 +416,16 @@ public class SettingsGui extends LightweightGuiDescription {
             donePanic.add(done, 10, 25, 35, 20);
             donePanic.add(exit, 55, 25, 35, 20);
             done.setOnClick(() -> {
-                Config.pan = !Config.pan;
-                if (Config.pan){
+                test.pan = !test.pan;
+                if (test.pan){
                     assert MinecraftClient.getInstance().currentScreen != null;
                     MinecraftClient.getInstance().currentScreen.close();
                 }
             });
             exit.setOnClick(() -> {
-                if (Config.hits) {hitBoxSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
-                else if (Config.glow) {GlowSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
-                else if (Config.click) {ClickerSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+                if (test.hits) {hitBoxSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+                else if (test.glow) {GlowSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
+                else if (test.click) {ClickerSettings.setLocation((ExampleScreen.screenWidth/2-28), (ExampleScreen.screenHeight/2-73));}
                 donePanic.setLocation((ExampleScreen.screenWidth+9999), (ExampleScreen.screenHeight));
                 back.add(root, (ExampleScreen.screenWidth/2-135), (ExampleScreen.screenHeight/2-73), 104, 146);
                 back.add(panic, ExampleScreen.screenWidth-60, ExampleScreen.screenHeight-30, 50, 20);

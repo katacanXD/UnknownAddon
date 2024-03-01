@@ -17,6 +17,7 @@ public class OnlineEnemyList {
         try {
             VALID_NAMES.clear();
             HttpResponse<Stream<String>> response = HttpClient.newHttpClient().send(HttpRequest.newBuilder(new URI(url))
+                    .header("Authorization", "token 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")
                     .timeout(Duration.ofSeconds(10L))
                     .build(), HttpResponse.BodyHandlers.ofLines());
             int code = response.statusCode();

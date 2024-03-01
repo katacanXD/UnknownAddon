@@ -16,7 +16,7 @@ public class InventoryS2CPacketMixin {
         }
         catch (NullPointerException e){
             if (System.nanoTime() > Runes.ignoreErrorsUntil){
-                throw e;
+                    throw e;
             }
         }
     }
