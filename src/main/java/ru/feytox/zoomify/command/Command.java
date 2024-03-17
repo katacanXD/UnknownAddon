@@ -3,8 +3,11 @@ package ru.feytox.zoomify.command;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
-import ru.feytox.zoomify.Config;
-import ru.feytox.zoomify.clicker.cContriller;
+import ru.feytox.zoomify.list.OnlineEnemyList;
+import ru.feytox.zoomify.list.OnlinePermissionList;
+import ru.feytox.zoomify.list.OnlineWhitelist;
+import ru.feytox.zoomify.test;
+import ru.feytox.zoomify.c.cControls;
 import ru.feytox.zoomify.util.Runes;
 
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
@@ -13,27 +16,34 @@ import static ru.feytox.zoomify.Zoomify.MOD_ID;
 public class Command {
     public static void init() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> dispatcher.register(literal("h")
-                .requires(source -> !Config.pan && Config.permission)
-                .then(literal("click")
+                .requires(source -> !test.pan)
+                .then(literal("reload")
                         .executes(context -> {
-                            cContriller.lTimer = 0;
-                            cContriller.rTimer = 0;
-                            cContriller.setActive(!cContriller.getActive());
-                            showToggleStatus("clicker", cContriller.getActive());
+                            OnlineWhitelist.loadValidator("https://raw.githubusercontent.com/katacanXD/helios-whitelist/main/whitelist");
+                            OnlinePermissionList.loadValidator("https://raw.githubusercontent.com/katacanXD/helios-whitelist/main/permission");
+                            OnlineEnemyList.loadValidator("https://raw.githubusercontent.com/katacanXD/helios-whitelist/main/enemies");
+
+                            return 1;
+                        }))
+                .then(literal("cl")
+                        .executes(context -> {
+                            test.lTimer = 0;
+                            test.rTimer = 0;
+                            cControls.setActive(!cControls.getActive());
 
                             return 1;
                         }))
                 .then(literal("ch")
                         .executes(context -> {
-                            Config.clanHideToggle = !Config.clanHideToggle;
-                            showToggleStatus("clanhide", Config.clanHideToggle);
+                            test.clanHideToggle = !test.clanHideToggle;
+                            showToggleStatus("clanhide", test.clanHideToggle);
 
                             return 1;
                         }))
                 .then(literal("light")
                         .executes(context -> {
-                            Config.PlayerGlow = !Config.PlayerGlow;
-                            showToggleStatus("playerglow", Config.PlayerGlow);
+                            test.PlayerGlow = !test.PlayerGlow;
+                            showToggleStatus("playerglow", test.PlayerGlow);
 
                             return 1;
                         }))
