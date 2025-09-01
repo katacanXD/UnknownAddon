@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "ru.feytox.zoomify.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "EntityMixin",
+    "HideEntityMixin",
+    "InventoryS2CPacketMixin",
+    "LivingEntityMixin",
+    "ScreenHandlerSlotUpdateS2CPacketMixin"
+  ],
+  "client": [
+    "ClientPlayNetworkHandlerMixin",
+    "HideEntityMixin",
+    "MixinDisplayEntityRenderer",
+    "NoBlindnessMixin",
+    "SilenceRaycastMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
